@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priyanga B — Data Science &amp; Quantum ML Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #EEF1F6;
+      --bg-panel: #FFFFFF;
+      --ink: #10182B;
+      --ink-soft: #4A5268;
+      --ink-faint: #8890A4;
+      --violet: #6C4FF5;
+      --violet-deep: #4B31C9;
+      --amber: #E8853A;
+      --line: #D8DDE8;
+      --radius: 2px;
+    }
+
+    /* ---------- DARK MODE ---------- */
+
+    [data-theme="dark"] {
+      --bg: #0F1220;
+      --bg-panel: #171B2B;
+      --ink: #F4F5FA;
+      --ink-soft: #C2C7D6;
+      --ink-faint: #8F96AA;
+      --violet: #8B78FF;
+      --violet-deep: #A294FF;
+      --amber: #F0A15A;
+      --line: #2B3145;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background: var(--violet);
+      color: #fff;
+    }
+
+    a {
+      color: var(--violet-deep);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--violet-deep);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(238, 241, 246, 0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+    }
+
+    .nav-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: var(--ink-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--violet-deep);
+      text-decoration: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      margin: 5px 0;
+    }
+
+    @media (max-width:700px) {
+      .nav-links {
+        position: fixed;
+        top: 57px;
+        left: 0;
+        right: 0;
+        background: var(--bg-panel);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--line);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .25s ease;
+      }
+
+      .nav-links.open {
+        max-height: 400px;
+      }
+
+      .nav-links li {
+        border-top: 1px solid var(--line);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 14px 32px;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      @media (max-width: 700px) {
+
+        .nav-actions {
+          margin-left: auto;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .theme-toggle {
+          width: 34px;
+          height: 34px;
+          font-size: 16px;
+        }
+
+      }
+    }
+
+    /* ---------- DARK NAVIGATION ---------- */
+
+    [data-theme="dark"] nav {
+      background: var(--bg);
+      border-bottom-color: var(--line);
+    }
+
+    [data-theme="dark"] .nav-name {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .nav-links a {
+      color: var(--ink-soft);
+    }
+
+    [data-theme="dark"] .nav-links a:hover {
+      color: var(--violet);
+    }
+
+    /* ---------- DARK BUTTONS ---------- */
+
+    [data-theme="dark"] .btn-primary {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .btn-primary:hover {
+      background: var(--violet-deep);
+      border-color: var(--violet-deep);
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .btn-ghost {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .btn-ghost:hover {
+      background: var(--bg-panel);
+      border-color: var(--violet);
+      color: var(--violet);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 88px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width:700px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    .eyebrow-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-line .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex: none;
+    }
+
+    .hero-title {
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.05;
+    }
+
+    .hero-name {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(48px, 6vw, 68px);
+      font-weight: 700;
+      color: var(--violet-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-dash {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(48px, 6vw, 68px);
+      font-weight: 500;
+      color: var(--ink);
+      margin-left: 8px;
+    }
+
+    .hero-tagline {
+      display: block;
+      margin-top: 12px;
+
+      font-family: 'Fraunces', serif;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.25;
+
+      color: var(--ink);
+      font-style: normal;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-role {
+      margin-top: 14px;
+      font-size: 18px;
+      color: var(--ink-soft);
+      max-width: 46ch;
+    }
+
+    .hero-summary {
+      margin-top: 22px;
+      font-size: 15.5px;
+      color: var(--ink-soft);
+      max-width: 56ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--violet-deep);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--violet-deep);
+      color: var(--violet-deep);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .photo-frame {
+      position: relative;
+      justify-self: center;
+      width: 220px;
+      height: 270px;
+    }
+
+    .photo-frame::before {
+      content: "";
+      position: absolute;
+      inset: -10px -10px auto auto;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid var(--violet);
+      z-index: 0;
+    }
+
+    .photo-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%);
+      border: 1px solid var(--line);
+    }
+
+    @media (max-width:700px) {
+      .photo-frame {
+        width: 170px;
+        height: 210px;
+      }
+    }
+
+    .wave-field {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    /* ---------- SECTION SCAFFOLD ---------- */
+    section {
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .sec-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--amber);
+    }
+
+    .sec-head h2 {
+      font-size: 28px;
+      color: var(--ink);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-body {
+      font-size: 16.5px;
+      color: var(--ink-soft);
+      max-width: 64ch;
+    }
+
+    /* ---------- ABOUT FOCUS CARDS ---------- */
+
+    .about-focus {
+      margin-top: 34px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+
+      background: transparent;
+      border: none;
+    }
+
+    @media (max-width: 700px) {
+      .about-focus {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    .focus-cell {
+      position: relative;
+
+      background: var(--bg-panel);
+
+      padding: 26px 24px 28px;
+
+      border: 1px solid var(--line);
+      border-radius: 8px;
+
+      min-height: 190px;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    /* Small violet accent at the top */
+
+    .focus-cell::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 24px;
+
+      width: 36px;
+      height: 3px;
+
+      background: var(--violet);
+    }
+
+    /* Hover effect */
+
+    .focus-cell:hover {
+      transform: translateY(-4px);
+
+      border-color: var(--violet);
+
+      box-shadow: 0 10px 25px rgba(16, 24, 43, 0.08);
+    }
+
+    .focus-cell h3 {
+      margin: 12px 0 10px;
+
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+
+      color: var(--ink);
+    }
+
+    .focus-cell p {
+      margin: 0;
+
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+
+      color: var(--ink-faint);
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .project {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 28px;
+    }
+
+    .project:first-child {
+      border-top: none;
+    }
+
+    @media (max-width:700px) {
+      .project {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    .project-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      text-transform: none;
+      letter-spacing: .02em;
+      line-height: 1.5;
+    }
+
+    .project-tag .status {
+      color: var(--violet-deep);
+    }
+
+    .project h3 {
+      font-family: 'IBM Plex Sans';
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .project ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 14.5px;
+    }
+
+    .project li {
+      margin-bottom: 4px;
+    }
+
+    .project .links {
+      margin-top: 10px;
+      font-size: 13.5px;
+    }
+
+    /* ---------- PUBLICATIONS ---------- */
+    .pub {
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .pub:first-child {
+      border-top: none;
+    }
+
+    .pub-title {
+      font-family: 'IBM Plex Sans';
+      font-weight: 600;
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+
+    .pub-meta {
+      font-size: 13.5px;
+      color: var(--ink-faint);
+      margin-top: 4px;
+    }
+
+    .pub-status {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 3px 8px;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px 40px;
+    }
+
+    @media (max-width:700px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-row h4 {
+      font-family: 'IBM Plex Sans';
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+    }
+
+    .chip-set {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      background: var(--bg-panel);
+    }
+
+    /* ---------- TIMELINE (experience + education) ---------- */
+    .tl-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 24px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .tl-item:first-child {
+      border-top: none;
+    }
+
+    @media (max-width:700px) {
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+
+    .tl-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+    }
+
+    .tl-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .tl-sub {
+      font-size: 13.5px;
+      color: var(--ink-faint);
+      margin-top: 2px;
+    }
+
+    .tl-desc {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    /* ---------- EXPERIENCE / EDUCATION SUBSECTIONS ---------- */
+
+    .subsection-title {
+      margin-top: 10px;
+      margin-bottom: 8px;
+
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+
+      color: var(--ink-faint);
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .education-title {
+      margin-top: 42px;
+    }
+
+    .certification-title {
+      margin-top: 42px;
+    }
+
+    /* ---------- CERTS ---------- */
+    .cert-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      columns: 2;
+      column-gap: 40px;
+    }
+
+    @media (max-width: 700px) {
+      .cert-list {
+        columns: 1;
+      }
+    }
+
+    .cert-list li {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      break-inside: avoid;
+    }
+
+    .cert-list li:first-child {
+      border-top: none;
+    }
+
+    /* ---------- BLOG ---------- */
+    .blog-placeholder {
+      border: 1px solid var(--line);
+      padding: 34px 40px;
+      margin-top: 34px;
+      background: var(--bg-panel);
+    }
+
+    .blog-label {
+      margin-bottom: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--violet);
+    }
+
+    .blog-placeholder h3 {
+      margin: 0 0 12px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .blog-placeholder p {
+      max-width: 850px;
+      margin: 0 0 10px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+    }
+
+    .blog-placeholder p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 700px) {
+      .blog-placeholder {
+        padding: 26px 22px;
+      }
+    }
+
+    /* ---------- THEME TOGGLE ---------- */
+
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--bg-panel);
+      color: var(--ink);
+
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- THEME TRANSITION ---------- */
+
+    body,
+    nav,
+    section,
+    footer,
+    .about-focus .focus-cell,
+    .project,
+    .pub,
+    .skill-row,
+    .cert-list li,
+    .contact-pill,
+    .btn,
+    .theme-toggle {
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    /* ---------- NAV ACTIONS ---------- */
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ---------- THEME TOGGLE ---------- */
+
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--bg-panel);
+      color: var(--ink);
+
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- CONTACT / FOOTER ---------- */
+    footer {
+      padding: 48px 0 36px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ---------- CONTACT HEADING ---------- */
+
+    .contact-lead h2 {
+      margin: 0;
+      font-family: 'Fraunces', serif;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 16ch;
+    }
+
+    @media (max-width: 700px) {
+      .contact-lead h2 {
+        font-size: 36px;
+        line-height: 1.35;
+        max-width: 15ch;
+      }
+    }
+
+    /* ---------- CONTACT LINKS ---------- */
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .contact-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 130px;
+      padding: 18px 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+    }
+
+    /* Violet accent at the top */
+
+    .contact-pill::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 24px;
+      width: 36px;
+      height: 3px;
+      background: var(--violet);
+    }
+
+    /* Hover effect */
+
+    .contact-pill:hover {
+      transform: translateY(-4px);
+      border-color: var(--violet);
+      color: var(--violet-deep);
+      box-shadow: 0 10px 25px rgba(16, 24, 43, 0.08);
+    }
+
+    @media (max-width: 700px) {
+      .contact-grid {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .contact-pill {
+        width: 100%;
+      }
+    }
+
+    /* ---------- FOOTER NOTE ---------- */
+
+    .foot-note {
+      margin-top: 32px;
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ---------- REDUCED MOTION ---------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="wrap">
+
+      <span class="nav-name">Priyanga B</span>
+
+      <div class="nav-actions">
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+          ☾
+        </button>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <header class="hero">
+    <svg class="wave-field" viewBox="0 0 900 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true">
+      <path d="M0,120 C150,60 250,180 400,120 C550,60 650,180 900,110" stroke="#6C4FF5" stroke-width="1" fill="none"
+        opacity="0.25" />
+      <path d="M0,160 C150,100 250,220 400,160 C550,100 650,220 900,150" stroke="#6C4FF5" stroke-width="1" fill="none"
+        opacity="0.18" />
+      <path d="M0,200 C150,140 250,260 400,200 C550,140 650,260 900,190" stroke="#E8853A" stroke-width="1" fill="none"
+        opacity="0.15" />
+    </svg>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line"><span class="dot"></span>Kerala, India — Data Science · AI · Quantum Computing</div>
+        <h1 class="hero-title">
+          <span class="hero-name">Priyanga B</span> —
+          <span class="hero-tagline">
+            bridging quantum circuits and classical intelligence.
+          </span>
+        </h1>
+        <p class="hero-role">Data Science postgraduate researcher working at the intersection of AI, quantum computing,
+          and privacy-preserving systems.</p>
+        <p class="hero-summary">
+          Currently building hybrid quantum-classical federated learning frameworks for intrusion
+          detection, with manuscripts under review and ongoing research aimed at high-impact publications.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#research">Explore my research</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="photo-frame">
+        <img src="photo_opt.jpg" alt="Portrait of Priyanga B">
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section id="about">
+
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2>About</h2>
+      </div>
+
+      <p class="about-body">
+        I am an M.Sc. Data Science student at Vellore Institute of Technology,
+        Chennai, with a B.Sc. background in Physics. My interests lie at the
+        intersection of data science, artificial intelligence, and quantum
+        computing, with a focus on developing practical and research-oriented
+        intelligent systems.
+        <br><br>
+        My work spans machine learning, deep learning, quantum machine learning,
+        federated learning, cybersecurity, natural language processing, and
+        distributed data analytics. I enjoy working across the complete data
+        lifecycle — from data preparation and modelling to experimentation,
+        evaluation, and visualization.
+        <br><br>
+        I am particularly interested in exploring how emerging computational
+        approaches can be combined with classical machine learning to build
+        secure, efficient, and intelligent systems.
+      </p>
+
+      <div class="about-focus">
+
+        <div class="focus-cell">
+          <h3>Data Science & AI</h3>
+          <p>
+            Machine learning, deep learning, NLP, statistical modelling,
+            data analysis, and end-to-end data-driven systems.
+          </p>
+        </div>
+
+        <div class="focus-cell">
+          <h3>Quantum Computing</h3>
+          <p>
+            Quantum machine learning, parameterized quantum circuits,
+            quantum neural networks, Qiskit, and PennyLane.
+          </p>
+        </div>
+
+        <div class="focus-cell">
+          <h3>Secure & Distributed AI</h3>
+          <p>
+            Federated learning, privacy-preserving approaches,
+            cybersecurity, and distributed big-data analytics.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="research">
+      <div class="sec-head"><span class="sec-num">02</span>
+        <h2>Research &amp; projects</h2>
+      </div>
+
+      <div class="project">
+
+        <div class="project-tag">
+          Ongoing<br>
+          <span class="status">Research</span>
+        </div>
+
+        <div>
+
+          <h3>
+            Adaptive Personalized Hybrid Quantum-Classical Federated
+            Learning for Privacy-Preserving Intrusion Detection
+          </h3>
+
+          <ul>
+
+            <li>
+              Developing a personalized hybrid quantum-classical federated
+              learning framework for intrusion detection, combining
+              parameterized quantum models with classical machine learning
+              components in a decentralized training setting.
+            </li>
+
+            <li>
+              Integrating Quantum Neural Networks (QNNs) with Differential
+              Privacy (DP) mechanisms to enable privacy-preserving model
+              training while limiting exposure of sensitive client data.
+            </li>
+
+            <li>
+              Designing an adaptive client-aggregation strategy to account
+              for client-level heterogeneity and improve personalization,
+              robustness, and collaborative model performance across
+              distributed participants.
+            </li>
+
+            <li>
+              Investigating the effectiveness of the proposed framework for
+              network intrusion detection using NSL-KDD, UNSW-NB15, and
+              CIC-IDS2017 datasets.
+            </li>
+
+            <li>
+              Conducting comparative evaluation using classification
+              performance, privacy, robustness, and federated-learning
+              related metrics to assess the proposed hybrid architecture
+              against conventional approaches.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="project">
+
+        <div class="project-tag">
+          Applied<br>
+          Project
+        </div>
+
+        <div>
+
+          <h3>
+            SignTalk — Continuous Word-Level Indian Sign Language Recognition
+          </h3>
+
+          <ul>
+
+            <li>
+              Developed a hybrid AI-based sign language recognition system
+              for real-time, word-level Indian Sign Language gesture
+              recognition and gesture-to-text translation.
+            </li>
+
+            <li>
+              Integrated YOLOv5-based object detection with MediaPipe
+              landmark extraction and an SVM-based classification pipeline
+              to identify and classify sign language gestures from video
+              input.
+            </li>
+
+            <li>
+              Incorporated an NLP-based grammar correction component to
+              transform sequentially recognized signs into more coherent
+              textual output.
+            </li>
+
+            <li>
+              Evaluated the system on a custom dataset containing 82 Indian
+              Sign Language words, achieving approximately 97% recognition
+              accuracy.
+            </li>
+
+          </ul>
+          <div class="links"><a href="https://github.com/Priyanga-babu-rajendran/SignTalk-ISL-Recognition"
+              target="_blank" rel="noopener">View
+              repository ↗</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+
+        <div class="project-tag">
+          Applied<br>
+          Project
+        </div>
+
+        <div>
+
+          <h3>
+            Distributed Web Log Analytics Using the Hadoop Ecosystem
+          </h3>
+
+          <ul>
+
+            <li>
+              Designed and deployed a 3-node distributed Hadoop cluster
+              incorporating HDFS, YARN, MapReduce, and Apache Spark for
+              large-scale processing of NASA web server log data.
+            </li>
+
+            <li>
+              Implemented distributed data-processing and parallel analytics
+              workflows to extract traffic patterns, request statistics,
+              client behaviour, and other operational insights from
+              large-scale web logs.
+            </li>
+
+            <li>
+              Utilized Hadoop's distributed storage and resource-management
+              architecture to support scalable processing across multiple
+              cluster nodes.
+            </li>
+
+            <li>
+              Developed an interactive Streamlit dashboard to visualize
+              processed analytics and present the resulting web-traffic
+              insights in an accessible form.
+            </li>
+
+          </ul>
+          <div class="links"><a
+              href="https://github.com/Priyanga-babu-rajendran/Distributed-web-log-analytics-using-hadoop-ecosystem"
+              target="_blank" rel="noopener">View
+              repository ↗</a></div>
+        </div>
+      </div>
+
+      <div class="project">
+
+        <div class="project-tag">
+          Undergrad<br>
+          Research
+        </div>
+
+        <div>
+
+          <h3>
+            X-ray Diffraction Analysis and Cell Parameter Calculation
+            of Reported Silicates
+          </h3>
+
+          <ul>
+
+            <li>
+              Performed X-ray diffraction (XRD) analysis of reported
+              silicate materials to investigate their crystallographic
+              characteristics and structural properties.
+            </li>
+
+            <li>
+              Applied Bragg's law and standard crystallographic relations
+              to analyse diffraction peaks and determine corresponding
+              interplanar spacings and unit-cell parameters.
+            </li>
+
+            <li>
+              Calculated lattice parameters from experimental diffraction
+              data and examined the resulting crystallographic values
+              against reported reference data.
+            </li>
+
+            <li>
+              Interpreted diffraction patterns and evaluated the agreement
+              between calculated structural parameters and values reported
+              in the literature.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="publications">
+
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2>Publications</h2>
+      </div>
+
+      <div class="pub">
+
+        <div class="pub-title">
+          Computational Methods for Multilingual Sentiment Analysis
+          in Social Media: A Systematic Review
+        </div>
+
+        <div class="pub-meta">
+          A PRISMA-based systematic review examining computational
+          approaches to multilingual sentiment analysis across
+          machine learning, deep learning, and transformer-based
+          architectures, including BERT and XLM-R, with particular
+          emphasis on challenges associated with multilingual and
+          code-mixed social media data.
+        </div>
+
+        <span class="pub-status">
+          Under Review — IEEE Access
+        </span>
+
+      </div>
+
+    </section>
+
+    <section id="skills">
+      <div class="sec-head"><span class="sec-num">04</span>
+        <h2>Skills &amp; tools</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <h4>Core domains</h4>
+          <div class="chip-set">
+            <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span>
+            <span class="chip">Quantum Machine Learning</span><span class="chip">Federated Learning</span>
+            <span class="chip">NLP</span><span class="chip">Big Data Analysis</span>
+            <span class="chip">Statistical Modeling</span><span class="chip">Model Optimization</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <h4>Programming</h4>
+          <div class="chip-set">
+            <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span>
+          </div>
+        </div>
+        <div class="skill-row">
+
+          <h4>Quantum Computing</h4>
+
+          <div class="chip-set">
+            <span class="chip">Quantum Machine Learning</span>
+            <span class="chip">Quantum Neural Networks</span>
+            <span class="chip">Parameterized Quantum Circuits</span>
+            <span class="chip">Qiskit</span>
+            <span class="chip">PennyLane</span>
+          </div>
+
+        </div>
+        <div class="skill-row">
+
+          <h4>Libraries &amp; Frameworks</h4>
+
+          <div class="chip-set">
+            <span class="chip">NumPy</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Scikit-learn</span>
+            <span class="chip">PyTorch</span>
+          </div>
+
+        </div>
+        <div class="skill-row">
+
+          <h4>Big Data &amp; Distributed Systems</h4>
+
+          <div class="chip-set">
+            <span class="chip">Hadoop</span>
+            <span class="chip">HDFS</span>
+            <span class="chip">YARN</span>
+            <span class="chip">MapReduce</span>
+            <span class="chip">Apache Spark</span>
+          </div>
+
+        </div>
+        <div class="skill-row">
+
+          <h4>Tools &amp; Visualization</h4>
+
+          <div class="chip-set">
+            <span class="chip">Jupyter</span>
+            <span class="chip">Streamlit</span>
+            <span class="chip">Git / GitHub</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Matplotlib</span>
+            <span class="chip">Seaborn</span>
+            <span class="chip">LaTeX</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="experience">
+
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <h2>Experience &amp; education</h2>
+      </div>
+
+
+      <!-- ==================== EXPERIENCE ==================== -->
+
+      <div class="subsection-title">
+        Experience
+      </div>
+
+      <div class="tl-item">
+
+        <div class="tl-date">
+          Aug 2024 – Apr 2025
+        </div>
+
+        <div>
+          <div class="tl-title">
+            Office Assistant — Mega Motors, Hero MotoCorp
+          </div>
+
+          <div class="tl-sub">
+            Aluva, Kerala
+          </div>
+
+          <div class="tl-desc">
+            Managed day-to-day administrative operations, maintained
+            documentation and records, supported insurance policy
+            management, and coordinated responses to customer enquiries.
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ==================== EDUCATION ==================== -->
+
+      <div class="subsection-title education-title">
+        Education
+      </div>
+
+      <div class="tl-item">
+
+        <div class="tl-date">
+          2025 – 2027
+        </div>
+
+        <div>
+          <div class="tl-title">
+            M.Sc. Data Science
+          </div>
+
+          <div class="tl-sub">
+            Vellore Institute of Technology, Chennai
+          </div>
+
+          <div class="tl-desc">
+            Expected July 2027 · CGPA 8.34 / 10
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="tl-item">
+
+        <div class="tl-date">
+          2021 – 2024
+        </div>
+
+        <div>
+          <div class="tl-title">
+            B.Sc. Physics
+          </div>
+
+          <div class="tl-sub">
+            Sree Krishna College, Guruvayur, Kerala
+          </div>
+
+          <div class="tl-desc">
+            CGPA 7.967 / 10
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="tl-item">
+
+        <div class="tl-date">
+          2019 – 2021
+        </div>
+
+        <div>
+          <div class="tl-title">
+            Higher Secondary — Biology Science with Mathematics
+          </div>
+
+          <div class="tl-sub">
+            V R A M M H S S, Guruvayur, Kerala
+          </div>
+
+          <div class="tl-desc">
+            99%
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ==================== CERTIFICATIONS ==================== -->
+
+      <div class="subsection-title certification-title">Certifications</div>
+
+      <ul class="cert-list">
+        <li>
+          Deloitte Australia — Data Analytics Job Simulation — Forage
+        </li>
+
+        <li>
+          Python for Data Science, AI &amp; Development — IBM
+        </li>
+
+        <li>
+          Introduction to Quantum Information — Korea Advanced Institute of
+          Science and Technology (KAIST)
+        </li>
+
+        <li>
+          Agentic AI and Autonomous Intelligent Systems — Vellore Institute
+          of Technology, Chennai
+        </li>
+
+        <li>
+          IQM Quantum School Certificate — IQM Quantum Computers
+        </li>
+
+        <li>
+          Tools for Data Science — IBM
+        </li>
+
+        <li>
+          Career Essentials in Data Analysis by Microsoft and LinkedIn —
+          Microsoft
+        </li>
+
+        <li>
+          Cloud Computing — NPTEL
+        </li>
+      </ul>
+    </section>
+
+    <section id="blog">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <h2>Blog</h2>
+      </div>
+
+      <div class="blog-placeholder">
+        <div class="blog-label">Research notes &amp; technical writing</div>
+
+        <h3>Writing in progress.</h3>
+
+        <p>
+          I am preparing technical notes and research-focused articles
+          on quantum machine learning, federated learning, artificial
+          intelligence, cybersecurity, and data science.
+        </p>
+
+        <p>
+          Future posts will cover concepts, experiments, project
+          insights, and practical implementations from my work.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <div class="wrap">
+
+      <div class="contact-lead">
+        <span class="sec-num" style="display:block;margin-bottom:10px;">07</span>
+
+        <h2>
+          Research, collaboration, and professional opportunities.
+        </h2>
+      </div>
+
+      <div class="contact-grid">
+
+        <a class="contact-pill" href="mailto:priyangagbr@gmail.com">
+          Email ↗
+        </a>
+
+        <a class="contact-pill" href="https://linkedin.com/in/priyangahere" target="_blank" rel="noopener">
+          LinkedIn ↗
+        </a>
+
+        <a class="contact-pill" href="https://github.com/Priyanga-babu-rajendran" target="_blank" rel="noopener">
+          GitHub ↗
+        </a>
+
+      </div>
+
+      <div class="foot-note">
+        Priyanga B · Kerala, India · M.Sc. Data Science
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    /* ---------- DARK MODE ---------- */
+
+    const themeToggle = document.getElementById('themeToggle');
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.textContent = '☀';
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+
+      const isDark =
+        document.documentElement.getAttribute('data-theme') === 'dark';
+
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+
+        themeToggle.textContent = '☾';
+        themeToggle.setAttribute(
+          'aria-label',
+          'Switch to dark mode'
+        );
+
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+
+        themeToggle.textContent = '☀';
+        themeToggle.setAttribute(
+          'aria-label',
+          'Switch to light mode'
+        );
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
